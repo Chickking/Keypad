@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Keypad</title>
+    <link rel="stylesheet" href="main.css">
+    <script type="text/javascript" src="js/jquery.min.js"></script>
+    <script type="text/javascript" src="js/qrcode.min.js"></script>
+    <script type="text/javascript" src="main.js"></script>
+  </head>
+  <body onload="getNumber()">
+    <div class="background"></div>
+    <input type="text" class="NumberShow" id="NumberShow"></input>
+    <p style="line-height: 1.2;"></p>
+    <audio id="keyAudio"></audio>
+    <table class="makecenter">
+      <tbody>
+        <tr>
+          <td>
+            <table class="keypad">
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('1')">1</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('2')">2</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('3')">3</span></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('4')">4</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('5')">5</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('6')">6</span></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('7')">7</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('8')">8</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('9')">9</span></a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('*')">*</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('0')">0</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="num" onclick="inputNumber('#')">#</span></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="specCharacter">
+              <tbody>
+                <tr>
+                  <td>
+                    <a href="javascript:void(0);"><span class="spec" onclick="inputNumber('+')">国别</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="spec" onclick="inputNumber(',')">暂停</span></a>
+                  </td>
+                  <td>
+                    <a href="javascript:void(0);"><span class="spec" onclick="inputNumber(';')">等待</span></a>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <table class="ActionButton">
+              <tr>
+                <td>
+                  <a href="javascript:void(0);" onclick="btnShare()"><img class="button" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTguMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjwhRE9DVFlQRSBzdmcgUFVCTElDICItLy9XM0MvL0RURCBTVkcgMS4xLy9FTiIgImh0dHA6Ly93d3cudzMub3JnL0dyYXBoaWNzL1NWRy8xLjEvRFREL3N2ZzExLmR0ZCI+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDMxMC4wMDIgMzEwLjAwMiIgc3R5bGU9ImVuYWJsZS1iYWNrZ3JvdW5kOm5ldyAwIDAgMzEwLjAwMiAzMTAuMDAyOyIgeG1sOnNwYWNlPSJwcmVzZXJ2ZSIgd2lkdGg9IjEyOHB4IiBoZWlnaHQ9IjEyOHB4Ij4KPGc+Cgk8cGF0aCBkPSJNMTIwLjYwNSw3MC42MDdsMTkuMzk2LTE5LjM5NXYxNTMuNzg2YzAsOC4yODQsNi43MTYsMTUsMTUsMTVjOC4yODQsMCwxNS02LjcxNiwxNS0xNVY1MS4yMTNsMTkuMzk0LDE5LjM5NCAgIGMyLjkyOSwyLjkyOSw2Ljc2Nyw0LjM5NCwxMC42MDYsNC4zOTRjMy44MzksMCw3LjY3OC0xLjQ2NCwxMC42MDYtNC4zOTRjNS44NTgtNS44NTgsNS44NTgtMTUuMzU1LDAtMjEuMjEzTDE2NS42MSw0LjM5NiAgIGMtMC4zNTItMC4zNTEtMC43MjEtMC42ODMtMS4xMDQtMC45OTdjLTAuMTY2LTAuMTM2LTAuMzQxLTAuMjU0LTAuNTEtMC4zODFjLTAuMjIyLTAuMTY3LTAuNDM5LTAuMzM3LTAuNjctMC40OTIgICBjLTAuMjA3LTAuMTM5LTAuNDIyLTAuMjU5LTAuNjM1LTAuMzg2Yy0wLjIwNy0wLjEyNS0wLjQxLTAuMjU1LTAuNjI0LTAuMzY5Yy0wLjIxNy0wLjExNi0wLjQzOS0wLjIxNC0wLjY2MS0wLjMxOCAgIGMtMC4yMjMtMC4xMDYtMC40NDEtMC4yMTYtMC42Ny0wLjMxMWMtMC4yMTQtMC4wODktMC40MzItMC4xNi0wLjY0OS0wLjIzOGMtMC4yNDQtMC4wODgtMC40ODUtMC4xODItMC43MzYtMC4yNTcgICBjLTAuMjE2LTAuMDY1LTAuNDM1LTAuMTEzLTAuNjUyLTAuMTY4Yy0wLjI1Ni0wLjA2NS0wLjUxLTAuMTM3LTAuNzcxLTAuMTg4Yy0wLjI1LTAuMDQ5LTAuNTAzLTAuMDc4LTAuNzU1LTAuMTE1ICAgYy0wLjIzMi0wLjAzMy0wLjQ2LTAuMDc3LTAuNjk1LTAuMWMtMC40NjItMC4wNDUtMC45MjUtMC4wNjctMS4zODktMC4wN2MtMC4wMywwLTAuMDU5LTAuMDA0LTAuMDg5LTAuMDA0ICAgYy0wLjAyOSwwLTAuMDU5LDAuMDA0LTAuMDg4LDAuMDA0Yy0wLjQ2NCwwLjAwMi0wLjkyOCwwLjAyNS0xLjM5MSwwLjA3Yy0wLjIzLDAuMDIzLTAuNDUzLDAuMDY2LTAuNjgsMC4wOTggICBjLTAuMjU4LDAuMDM3LTAuNTE2LDAuMDY3LTAuNzcxLDAuMTE4Yy0wLjI1NCwwLjA1LTAuNSwwLjEyLTAuNzQ5LDAuMTgzYy0wLjIyNiwwLjA1Ny0wLjQ1MiwwLjEwNi0wLjY3NiwwLjE3MyAgIGMtMC4yNDEsMC4wNzMtMC40NzYsMC4xNjQtMC43MTIsMC4yNDljLTAuMjI1LDAuMDgxLTAuNDUyLDAuMTU1LTAuNjc0LDAuMjQ3Yy0wLjIyLDAuMDkxLTAuNDMsMC4xOTgtMC42NDQsMC4yOTkgICBjLTAuMjMsMC4xMDgtMC40NjIsMC4yMTEtMC42ODgsMC4zMzFjLTAuMjA0LDAuMTA5LTAuMzk2LDAuMjMzLTAuNTk1LDAuMzUyYy0wLjIyMywwLjEzMi0wLjQ0NywwLjI1OC0wLjY2NCwwLjQwMyAgIGMtMC4yMTcsMC4xNDUtMC40MiwwLjMwNy0wLjYyOSwwLjQ2MmMtMC4xODQsMC4xMzctMC4zNzEsMC4yNjQtMC41NDksMC40MTFjLTAuMzY1LDAuMjk5LTAuNzE0LDAuNjE2LTEuMDQ5LDAuOTQ3ICAgYy0wLjAxNiwwLjAxNi0wLjAzMywwLjAyOS0wLjA1LDAuMDQ1bC00NS4wMDIsNDVjLTUuODU4LDUuODU4LTUuODU4LDE1LjM1NSwwLDIxLjIxM0MxMDUuMjUsNzYuNDY1LDExNC43NDgsNzYuNDYzLDEyMC42MDUsNzAuNjA3ICAgeiIgZmlsbD0iIzAwMDAwMCIvPgoJPHBhdGggZD0iTTI1NS4wMDEsMTAwLjAwMmgtNDBjLTguMjg0LDAtMTUsNi43MTYtMTUsMTVzNi43MTYsMTUsMTUsMTVoMjV2MTUwaC0xNzB2LTE1MGgyNWM4LjI4NCwwLDE1LTYuNzE2LDE1LTE1cy02LjcxNi0xNS0xNS0xNSAgIGgtNDBjLTguMjg0LDAtMTUsNi43MTYtMTUsMTV2MTgwYzAsOC4yODQsNi43MTYsMTUsMTUsMTVoMjAwYzguMjg0LDAsMTUtNi43MTYsMTUtMTV2LTE4MCAgIEMyNzAuMDAxLDEwNi43MTgsMjYzLjI4NSwxMDAuMDAyLDI1NS4wMDEsMTAwLjAwMnoiIGZpbGw9IiMwMDAwMDAiLz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="共享 Share"></img></a>
+                </td>
+                <td>
+                  <a id="callButton" href="javascript:void(0);" onclick="btnCall()"><img class="button" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iQ2FwYV8xIiB4PSIwcHgiIHk9IjBweCIgdmlld0JveD0iMCAwIDI5LjczMiAyOS43MzIiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDI5LjczMiAyOS43MzI7IiB4bWw6c3BhY2U9InByZXNlcnZlIiB3aWR0aD0iMTI4cHgiIGhlaWdodD0iMTI4cHgiPgo8Zz4KCTxnPgoJCTxwYXRoIGQ9Ik0yMy44OTYsMjkuNzMyYy0xLjIzNywwLTIuNzMyLTAuMzEtNC4zNzQtMC45M2MtMy42MDMtMS4zNTgtNy41MjEtNC4wNDItMTEuMDM2LTcuNTU2ICAgIGMtMy41MTQtMy41MTUtNi4xOTgtNy40MzUtNy41NTctMTEuMDM3Qy0wLjMwNiw2LjkzNC0wLjMwOSw0LjI0NiwwLjkyLDMuMDE2YzAuMTc3LTAuMTc4LDAuMzU4LTAuMzY4LDAuNTQ0LTAuNTYzICAgIEMyLjU4NywxLjI3MiwzLjg2OC0wLjA4LDUuNTM4LDAuMDA0YzEuMTYsMC4wNDgsMi4yODMsMC43NjgsMy40MzQsMi4xOThjMy4zOTYsNC4yMjYsMS44NjYsNS43MzIsMC4wOTQsNy40NzhsLTAuMzEzLDAuMzEgICAgYy0wLjI5LDAuMjktMC44NCwxLjYzNCw0LjI2LDYuNzMxYzEuNjY1LDEuNjY0LDMuMDg0LDIuODgyLDQuMjE3LDMuNjE5YzAuNzEzLDAuNDY1LDEuOTksMS4xNjUsMi41MTMsMC42NDJsMC4zMTYtMC4zMTggICAgYzEuNzQ0LTEuNzY5LDMuMjUtMy4yOTYsNy40NzQsMC4wOTljMS40MzEsMS4xNSwyLjE1LDIuMjcyLDIuMTk4LDMuNDMzYzAuMDY5LDEuNjgxLTEuMjcsMi45NTMtMi40NTIsNC4wNzUgICAgYy0wLjE5NSwwLjE4Ni0wLjM4NSwwLjM2Ni0wLjU2MiwwLjU0MkMyNi4xMDMsMjkuNDI2LDI1LjEyNywyOS43MzIsMjMuODk2LDI5LjczMnogTTUuNDE5LDEuMDAyYy0xLjE5NSwwLTIuMjc1LDEuMTM2LTMuMjMsMi4xNDEgICAgQzEuOTk3LDMuMzQ0LDEuODEsMy41NCwxLjYyNywzLjcyM0MwLjcxMiw0LjYzOCwwLjgwNSw3LjA0NywxLjg2NSw5Ljg1N2MxLjMxLDMuNDcyLDMuOTEzLDcuMjY2LDcuMzI5LDEwLjY4MyAgICBjMy40MTYsMy40MTUsNy4yMDksNi4wMTgsMTAuNjgyLDcuMzI3YzIuODEsMS4wNjIsNS4yMTgsMS4xNTIsNi4xMzMsMC4yMzdjMC4xODMtMC4xODMsMC4zNzktMC4zNjksMC41ODEtMC41NiAgICBjMS4wMjctMC45NzYsMi4xOTItMi4wODIsMi4xNDEtMy4zMDljLTAuMDM1LTAuODQzLTAuNjQ5LTEuNzUtMS44MjUtMi42OTVjLTMuNTE5LTIuODI4LTQuNTAzLTEuODMyLTYuMTM1LTAuMTc2bC0wLjMyMSwwLjMyMyAgICBjLTAuNzc5LDAuNzc5LTIuMDQ1LDAuNjA3LTMuNzY2LTAuNTFjLTEuMTkxLTAuNzc1LTIuNjY1LTIuMDM3LTQuMzc5LTMuNzUxYy00LjIzMi00LjIzLTUuNTg1LTYuODE4LTQuMjYtOC4xNDZsMC4zMTktMC4zMTUgICAgYzEuNjU4LTEuNjMyLDIuNjU5LTIuNjE3LTAuMTcxLTYuMTM4QzcuMjQ3LDEuNjUyLDYuMzQsMS4wMzgsNS40OTcsMS4wMDNDNS40NzEsMS4wMDIsNS40NDUsMS4wMDIsNS40MTksMS4wMDJ6IiBmaWxsPSIjMDAwMDAwIi8+Cgk8L2c+Cgk8Zz4KCQk8cGF0aCBkPSJNMTkuNTUyLDEwLjY4Yy0wLjEyOCwwLTAuMjU2LTAuMDQ5LTAuMzU0LTAuMTQ2Yy0wLjE5NS0wLjE5NS0wLjE5NS0wLjUxMiwwLTAuNzA3bDkuNjgtOS42OCAgICBjMC4xOTUtMC4xOTUsMC41MTItMC4xOTUsMC43MDcsMHMwLjE5NSwwLjUxMiwwLDAuNzA3bC05LjY4LDkuNjhDMTkuODA4LDEwLjYzMiwxOS42OCwxMC42OCwxOS41NTIsMTAuNjh6IiBmaWxsPSIjMDAwMDAwIi8+CgkJPHBhdGggZD0iTTI5LjIzMiw4LjQwM2MtMC4yNzYsMC0wLjUtMC4yMjQtMC41LTAuNVYxLjAwMUgyMS44M2MtMC4yNzYsMC0wLjUtMC4yMjQtMC41LTAuNXMwLjIyNC0wLjUsMC41LTAuNWg3LjQwMSAgICBjMC4yNzYsMCwwLjUsMC4yMjQsMC41LDAuNXY3LjQwMkMyOS43MzIsOC4xOCwyOS41MDgsOC40MDMsMjkuMjMyLDguNDAzeiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+CjxnPgo8L2c+Cjwvc3ZnPgo=" alt="呼叫 Call"></img></a>
+                </td>
+                <td>
+                  <a href="javascript:void(0);" onclick="btnDelete()"><img class="button" src="data:image/svg+xml;utf8;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iaXNvLTg4NTktMSI/Pgo8IS0tIEdlbmVyYXRvcjogQWRvYmUgSWxsdXN0cmF0b3IgMTkuMC4wLCBTVkcgRXhwb3J0IFBsdWctSW4gLiBTVkcgVmVyc2lvbjogNi4wMCBCdWlsZCAwKSAgLS0+CjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayIgdmVyc2lvbj0iMS4xIiBpZD0iTGF5ZXJfMSIgeD0iMHB4IiB5PSIwcHgiIHZpZXdCb3g9IjAgMCA0OTYuMzg1IDQ5Ni4zODUiIHN0eWxlPSJlbmFibGUtYmFja2dyb3VuZDpuZXcgMCAwIDQ5Ni4zODUgNDk2LjM4NTsiIHhtbDpzcGFjZT0icHJlc2VydmUiIHdpZHRoPSIxMjhweCIgaGVpZ2h0PSIxMjhweCI+CjxnPgoJPGc+CgkJPHBhdGggZD0iTTE0OS40MTMsOTguNzc0TDAsMjQ4LjE5N2wxNDkuNDEzLDE0OS40MTNoMzQ2Ljk3MVY5OC43NzRIMTQ5LjQxM3ogTTQ3Ni42OTIsMzc3LjkxOEgxNTcuNTY3TDI3Ljg0NiwyNDguMTk3ICAgIGwxMjkuNzIxLTEyOS43MzFoMzE5LjEyNVYzNzcuOTE4eiIgZmlsbD0iIzAwMDAwMCIvPgoJPC9nPgo8L2c+CjxnPgoJPGc+CgkJPHBvbHlnb24gcG9pbnRzPSIzNzYuNTk2LDE3OC44NjEgMzYyLjY3MywxNjQuOTM3IDI5My4zNDQsMjM0LjI2OSAyMjQuMDE0LDE2NC45MzcgMjEwLjA5MSwxNzguODYxIDI3OS40MjEsMjQ4LjE5MiAgICAgMjEwLjA5MSwzMTcuNTI0IDIyNC4wMTQsMzMxLjQ0NyAyOTMuMzQ0LDI2Mi4xMTUgMzYyLjY3MywzMzEuNDQ3IDM3Ni41OTYsMzE3LjUyNCAzMDcuMjY3LDI0OC4xOTIgICAiIGZpbGw9IiMwMDAwMDAiLz4KCTwvZz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8Zz4KPC9nPgo8L3N2Zz4K" alt="删除 Delete"></img></a>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="blur" id="blur" style="display: none;"></div>
+    <div class="shareQR" id="shareQR" style="display: none;">
+      <input class="closeBtn" type="submit" name="X" value="X" onclick="window.location.hash = document.getElementById('NumberShow').value;window.location.reload();"></input>
+      <div class="qrcode" id="qrcode"></div>
+      <!--<input type="submit" name="保存" value="保存" onclick="saveImage()"></input>
+      <input type="submit" name="拷贝" value="拷贝" onclick="copyImage()"></input>-->
+    </div>
+  </body>
+</html>
