@@ -20,7 +20,7 @@ a {
   margin: -10px, -10px, -10px, -10px;
   z-index: -1;
   opacity: 0.8;
-   -webkit-filter: blur(1em); /* Chrome, Opera */
+   -webkit-filter: blur(1em);
 }
 
 .NumberShow {

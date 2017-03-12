@@ -58,12 +58,3 @@ function btnShare() {
     document.getElementById('shareQR').style = 'display: auto;';
   }
 }
-
-/*function saveImage() {
-  var fs = require('fs');
-  fs.fileSave(document.img.src);
-}
-
-function copyImage() {
-
-}*/
