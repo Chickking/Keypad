@@ -117,3 +117,9 @@ a {
 .closeBtn {
   float: right;
 }
+
+#callURLOpenFrame {
+  display: none;
+  width: 0px;
+  height: 0px;
+}

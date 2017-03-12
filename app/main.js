@@ -37,9 +37,10 @@ function btnDelete() {
 
 function btnCall() {
   var field = document.getElementById('NumberShow');
+  var openFrame = document.getElementById('callURLOpenFrame');
   var strNum = field.value;
   var telURI = "tel://" + strNum;
-  window.location.href = telURI;
+  openFrame.src = telURI;
 }
 
 function btnShare() {
