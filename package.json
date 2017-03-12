@@ -1,0 +1,22 @@
+{
+  "name": "keypad",
+  "version": "0.9.1",
+  "description": "Keypad on Windows/Mac/Linux, share QR Code or call with phone.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Chickking/Keypad.git"
+  },
+  "keywords": [
+    "keypad"
+  ],
+  "author": "Chickking",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/Chickking/Keypad/issues"
+  },
+  "homepage": "https://github.com/Chickking/Keypad#readme"
+}
